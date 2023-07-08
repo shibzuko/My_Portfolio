@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>My Blog</h1>
+    {% for post in posts %}
+    <a href="{% url 'blog:detail' post.id %}"><h3>{{post.title}}</h3></a>
+    <h5>{{ post.date_time }}</h5>
+    <p>{{ post.description|safe|truncatechars:100 }}</p>
+    {% endfor %}
+
+</body>
+</html>
