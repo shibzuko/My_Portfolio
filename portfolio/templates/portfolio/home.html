@@ -1,40 +1,40 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {% load static %}
+{% extends 'portfolio/base.html' %}
+{% load static %}
+{% block content %}
 
-    <nav>
-        <h3><a href="{% static 'portfolio/my_resume.pdf' %}" target="_blank">Resume</a></h3>
-        <h3><a href="https://github.com/shibzuko" target="_blank">Github</a></h3>
-        <h3><a href="https://twitter.com/shibzuko?t=ENSk1EkssF62hwk_O6LUww&s=09" target="_blank">Twitter</a></h3>
-        <h2><a href="{% url 'blog:all_blog' %}" target="_blank">Blog</a></h2>
-    </nav>
 
-    <div>
-        <img src="{% static 'portfolio/photo_1.webp' %}">
-    </div>
-    
-    <div>
-        <h1>Portfolio</h1>
-        {{ projects }}
-        <br>{% for project in projects %}
 
-        <br>{{ project.id }}
+<div class="row justify-content-center my-3">
+  <div class="col-5">
+    <img src="{% static 'portfolio/photo_1.webp' %}" class="img-fluid">
+  </div>
+</div>
 
-        <br><h3>{{ project.title }}</h3>
+<div class="row justify-content-center mb-3">
+  <div class="col-md-9 text-center">
+    <h1 id="hometext" class="font-weight-bold">Джун-стажун в поисках оффера 😊</h1>
+  </div>
+</div>
 
-        <br><img src="{{ project.image.url }}" height="180" width="320">
+<h2 class="mt-5">Portfolio</h2>
+<hr>
+<div class="row">
+  {% for project in projects %}
+  <div class="col-lg-4 col-md-6">
 
-        <br><p>{{ project.description }}</p>
+    {% if project.url %}
+    <a href="{{ project.url }}">
+      <img src="{{ project.image.url }}" class="img-fluid mb-2">
+    </a>
+    {% else %}
 
-        {% if project.url %}
-        <br><a href="{{ project.url }}">Ссылка</a>
-        {% endif %}
-        {% endfor %}
-    </div>
-</body>
-</html>
+    <img src="{{ project.image.url }}" class="img-fluid mb-2">
+    {% endif %}
+    <h3>{{ project.title }}</h3>
+    <p>{{ project.description }}</p>
+
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

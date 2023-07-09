@@ -6,3 +6,6 @@ class Project(models.Model):
     image = models.ImageField(upload_to='portfolio/images/')
     url = models.URLField(blank=True)  # blank=True - позволяет открывать ссылку в новой вкладке
 
+    def __str__(self):  # Позволяет показывать названия проектов в админке
+        return self.title  # можно также добавить описание
+

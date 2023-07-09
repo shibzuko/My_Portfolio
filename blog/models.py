@@ -5,3 +5,5 @@ class Post(models.Model):
     description = models.TextField()
     date_time = models.DateTimeField()
 
+    def __str__(self):  # Позволяет показывать названия проектов в админке
+        return self.title  # можно также добавить описание
